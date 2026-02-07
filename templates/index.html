@@ -1,0 +1,45 @@
+{% extends '_base.html' %} {% block content %}
+
+<h1 class="mb-6 text-3xl text-green-800">Maqolalar</h1>
+
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+  {% for maqola in maqolalar %}
+  <div
+    class="bg-white border border-gray-400 rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700"
+  >
+    <div class="p-5">
+      <a href="{% url 'detail' maqola.id %}">
+        <h5
+          class="mb-2 text-xl font-semibold tracking-tight text-gray-900 dark:text-white"
+        >
+          {{ maqola.title }}
+        </h5>
+      </a>
+      <p class="mb-4 text-sm text-gray-600 dark:text-gray-400">
+        {{ maqola.subtitle }}
+      </p>
+      <a
+        href="{% url 'detail' maqola.id %}"
+        class="inline-flex items-center px-3 py-2 text-sm font-medium text-white bg-green-700 rounded-lg hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
+      >
+        O'qishni davom ettirish
+        <svg
+          class="w-4 h-4 ml-2 -mr-1"
+          fill="currentColor"
+          viewBox="0 0 20 20"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            fill-rule="evenodd"
+            d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
+            clip-rule="evenodd"
+          ></path>
+        </svg>
+      </a>
+    </div>
+  </div>
+
+  {% endfor %}
+</div>
+
+{% endblock content %}

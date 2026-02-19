@@ -1,0 +1,13 @@
+{% extends "_base.html" %} {% block content %}
+
+<div
+  class="bg-[#2a2a2a]/80 backdrop-blur-xl border border-white/10 rounded-lg p-6 max-w-md mx-auto"
+>
+  <h2 class="text-2xl font-semibold mb-4">Foydalanuvchi Profili</h2>
+  <p class="mb-2">
+    <strong>Ism:</strong> {{ user.first_name }} {{ user.last_name }}
+  </p>
+  <p class="mb-2"><strong>Email:</strong> {{ user.email }}</p>
+  <!-- Qo'shimcha ma'lumotlar va sozlamalar uchun joy -->
+</div>
+{% endblock content %}

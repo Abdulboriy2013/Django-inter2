@@ -9,7 +9,8 @@ class Maqola(models.Model):
     subtitle = models.CharField(max_length=70)
     content = models.TextField()
     created_at = models.DateTimeField(default=timezone.now)
-    views = models.PositiveIntegerField()
+    views = models.PositiveIntegerField(default=0)
+    author = models.ForeignKey(Profile, on_delete=models.CASCADE, null=True, blank=True, related_name='maqolalar')
     category = models.ForeignKey('Category', on_delete=models.CASCADE)
     def __str__(self):
         return self.title
@@ -18,10 +19,11 @@ class Comment(models.Model):
     user = models.ForeignKey(Profile, on_delete=models.CASCADE)
     maqola = models.ForeignKey('Maqola', on_delete=models.CASCADE)
     vaqti = models.DateTimeField(default=timezone.now)
-    adminReply = models.CharField(null=True, blank=True)
+    adminReply = models.CharField(max_length=255, null=True, blank=True)
     status = models.BooleanField(default=False)
+    comment = models.TextField()
     def __str__(self):
-        return self.user
+        return str(self.user)
     
 class Like(models.Model):
     user = models.ForeignKey(Profile, on_delete=models.CASCADE)

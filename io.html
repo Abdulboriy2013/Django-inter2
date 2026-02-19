@@ -1,0 +1,399 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <title>Document</title>
+  </head>
+  <body>
+    <nav
+      class="bg-gray-800 shadow-lg p-4 flex justify-between items-center border-b-2 border-blue-500"
+    >
+      <div class="text-2xl font-black text-blue-600 tracking-tighter italic">
+        MY_SHOP
+      </div>
+      <div class="space-x-6 font-medium text-gray-200">
+        <a href="#" class="hover:text-blue-500 transition">Bosh sahifa</a>
+        <a href="#" class="hover:text-blue-500 transition">Mahsulotlar</a>
+        <a
+          href="#"
+          class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition shadow-md"
+          >Kirish</a
+        >
+      </div>
+    </nav>
+
+    <div class="bg-black text-white">
+      <div
+        class="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-14 lg:max-w-7xl lg:px-8"
+      >
+        <h2 class="sr-only">Products</h2>
+
+        <div
+          class="w-auto h-auto mb-16 rounded-lg gap-5 flex items-center justify-center"
+        >
+          <form
+            action="/search/"
+            method="post"
+            style="
+              position: relative;
+              display: inline-block;
+              width: 50%;
+              margin-bottom: 20px;
+            "
+          >
+            <input
+              type="hidden"
+              name="csrfmiddlewaretoken"
+              value="i6l5t3tIEv6Ut9sW04NAqGzyqZCjXxbgPHfJ4Tl5OWyXyWp1BrxBhXBhe3ug82BO"
+            />
+            <input
+              type="text"
+              name="query"
+              placeholder="Mahsulot nomini kiriting..."
+              style="
+                width: 100%;
+                padding: 12px 100px 12px 15px;
+                background: black;
+                border: 2px solid #007bff;
+                border-radius: 8px;
+                color: white;
+                outline: none;
+              "
+            />
+
+            <button
+              type="submit"
+              style="
+                position: absolute;
+                right: 5px;
+                top: 50%;
+                transform: translateY(-50%);
+                background: #007bff;
+                color: white;
+                border: none;
+                padding: 8px 20px;
+                border-radius: 6px;
+                cursor: pointer;
+              "
+            >
+              qidirish
+            </button>
+          </form>
+          <br /><br />
+
+          <form
+            action="/filter/"
+            method="post"
+            style="
+              position: relative;
+              display: inline-block;
+              width: 50%;
+              margin-bottom: 20px;
+            "
+          >
+            <input
+              type="hidden"
+              name="csrfmiddlewaretoken"
+              value="i6l5t3tIEv6Ut9sW04NAqGzyqZCjXxbgPHfJ4Tl5OWyXyWp1BrxBhXBhe3ug82BO"
+            />
+            <select
+              name="category_id"
+              style="
+                width: 100%;
+                padding: 12px 100px 12px 15px;
+                background: black;
+                border: 2px solid #007bff;
+                border-radius: 8px;
+                color: white;
+                outline: none;
+              "
+            >
+              <option value="0">—————————————</option>
+
+              <option value="1">kompyuterlar</option>
+
+              <option value="2">telefonlar</option>
+
+              <option value="3">mashinalar</option>
+
+              <option value="4">mishkalar</option>
+
+              <option value="5">klaviaturalar</option>
+            </select>
+            <button
+              type="submit"
+              style="
+                position: absolute;
+                right: 5px;
+                top: 50%;
+                transform: translateY(-50%);
+                background: #007bff;
+                color: white;
+                border: none;
+                padding: 8px 20px;
+                border-radius: 6px;
+                cursor: pointer;
+              "
+            >
+              filtirlash
+            </button>
+          </form>
+        </div>
+
+        <h1>
+          <b><i>Mahsulotlar</i></b>
+        </h1>
+
+        <div
+          class="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 xl:gap-x-8 top"
+        >
+          <a href="/detail/1" class="group">
+            <img
+              src="/media/products_images/victus_0TlvwS5.avif"
+              alt="Victus by HP"
+              class="..."
+            />
+
+            <h3 class="mt-4 text-sm text-gray-300">Victus by HP</h3>
+            <p class="mt-1 text-lg font-medium text-white underline">1200 $</p>
+          </a>
+
+          <a href="/detail/2" class="group">
+            <img
+              src="/media/products_images/asusrogstrix.webp"
+              alt="Asus rog stix scar 18"
+              class="..."
+            />
+
+            <h3 class="mt-4 text-sm text-gray-300">Asus rog stix scar 18</h3>
+            <p class="mt-1 text-lg font-medium text-white underline">4990 $</p>
+          </a>
+
+          <a href="/detail/3" class="group">
+            <img
+              src="/media/products_images/legionlenovo.webp"
+              alt="Lenovo Legion Pro 7"
+              class="..."
+            />
+
+            <h3 class="mt-4 text-sm text-gray-300">Lenovo Legion Pro 7</h3>
+            <p class="mt-1 text-lg font-medium text-white underline">4990 $</p>
+          </a>
+
+          <a href="/detail/4" class="group">
+            <img
+              src="/media/products_images/OMENhp.webp"
+              alt="HP OMEN max 16"
+              class="..."
+            />
+
+            <h3 class="mt-4 text-sm text-gray-300">HP OMEN max 16</h3>
+            <p class="mt-1 text-lg font-medium text-white underline">
+              about 3450 $
+            </p>
+          </a>
+
+          <a href="/detail/5" class="group">
+            <img
+              src="/media/products_images/Logitech_super_keyboars.jpg"
+              alt="SteelSeries Apex Pro"
+              class="..."
+            />
+
+            <h3 class="mt-4 text-sm text-gray-300">SteelSeries Apex Pro</h3>
+            <p class="mt-1 text-lg font-medium text-white underline">
+              180-200 $
+            </p>
+          </a>
+
+          <a href="/detail/6" class="group">
+            <img
+              src="/media/products_images/Logitech2.jpg"
+              alt="Razer Huntsman V2"
+              class="..."
+            />
+
+            <h3 class="mt-4 text-sm text-gray-300">Razer Huntsman V2</h3>
+            <p class="mt-1 text-lg font-medium text-white underline">
+              150-190 $
+            </p>
+          </a>
+
+          <a href="/detail/7" class="group">
+            <img
+              src="/media/products_images/Logitech3.jpg"
+              alt="Logitech MX Keys S"
+              class="..."
+            />
+
+            <h3 class="mt-4 text-sm text-gray-300">Logitech MX Keys S</h3>
+            <p class="mt-1 text-lg font-medium text-white underline">
+              100-120 $
+            </p>
+          </a>
+
+          <a href="/detail/8" class="group">
+            <img
+              src="/media/products_images/Logitech4.jpg"
+              alt="Corsair K100 RGB"
+              class="..."
+            />
+
+            <h3 class="mt-4 text-sm text-gray-300">Corsair K100 RGB</h3>
+            <p class="mt-1 text-lg font-medium text-white underline">
+              220-250 $
+            </p>
+          </a>
+
+          <a href="/detail/9" class="group">
+            <img
+              src="/media/products_images/Bugatti-Chiron.jpg"
+              alt="Bugatti Chiron"
+              class="..."
+            />
+
+            <h3 class="mt-4 text-sm text-gray-300">Bugatti Chiron</h3>
+            <p class="mt-1 text-lg font-medium text-white underline">
+              3 300 000 $
+            </p>
+          </a>
+
+          <a href="/detail/10" class="group">
+            <img
+              src="/media/products_images/Ferrari_SF90_Stradale.avif"
+              alt="Ferrari SF90 Stradale"
+              class="..."
+            />
+
+            <h3 class="mt-4 text-sm text-gray-300">Ferrari SF90 Stradale</h3>
+            <p class="mt-1 text-lg font-medium text-white underline">
+              525 000 $
+            </p>
+          </a>
+
+          <a href="/detail/11" class="group">
+            <img
+              src="/media/products_images/Lamborghini_Revuelto.avif"
+              alt="Lamborghini Revuelto"
+              class="..."
+            />
+
+            <h3 class="mt-4 text-sm text-gray-300">Lamborghini Revuelto</h3>
+            <p class="mt-1 text-lg font-medium text-white underline">
+              600 000 $
+            </p>
+          </a>
+
+          <a href="/detail/12" class="group">
+            <img
+              src="/media/products_images/Porsche_911_GT3_RS.webp"
+              alt="Porsche 911 GT3 RS"
+              class="..."
+            />
+
+            <h3 class="mt-4 text-sm text-gray-300">Porsche 911 GT3 RS</h3>
+            <p class="mt-1 text-lg font-medium text-white underline">
+              241 000 $
+            </p>
+          </a>
+
+          <a href="/detail/13" class="group">
+            <img
+              src="/media/products_images/Logitech_G502_X_Plus.png"
+              alt="Logitech G502 X Plus"
+              class="..."
+            />
+
+            <h3 class="mt-4 text-sm text-gray-300">Logitech G502 X Plus</h3>
+            <p class="mt-1 text-lg font-medium text-white underline">160 $</p>
+          </a>
+
+          <a href="/detail/14" class="group">
+            <img
+              src="/media/products_images/Razer_DeathAdder_V3_Pro.webp"
+              alt="Razer DeathAdder V3 Pro"
+              class="..."
+            />
+
+            <h3 class="mt-4 text-sm text-gray-300">Razer DeathAdder V3 Pro</h3>
+            <p class="mt-1 text-lg font-medium text-white underline">150 $</p>
+          </a>
+
+          <a href="/detail/15" class="group">
+            <img
+              src="/media/products_images/Logitech_MX_Master_3S.png"
+              alt="Logitech MX Master 3S"
+              class="..."
+            />
+
+            <h3 class="mt-4 text-sm text-gray-300">Logitech MX Master 3S</h3>
+            <p class="mt-1 text-lg font-medium text-white underline">99 $</p>
+          </a>
+
+          <a href="/detail/16" class="group">
+            <img
+              src="/media/products_images/SteelSeries_Prime_Wireless.jpg"
+              alt="SteelSeries Prime Wireless"
+              class="..."
+            />
+
+            <h3 class="mt-4 text-sm text-gray-300">
+              SteelSeries Prime Wireless
+            </h3>
+            <p class="mt-1 text-lg font-medium text-white underline">120 $</p>
+          </a>
+
+          <a href="/detail/17" class="group">
+            <img
+              src="/media/products_images/iPhone_17_Pro_Max.webp"
+              alt="iPhone 17 Pro Max"
+              class="..."
+            />
+
+            <h3 class="mt-4 text-sm text-gray-300">iPhone 17 Pro Max</h3>
+            <p class="mt-1 text-lg font-medium text-white underline">
+              2T 1999 $
+            </p>
+          </a>
+
+          <a href="/detail/18" class="group">
+            <img
+              src="/media/products_images/samsung_25.webp"
+              alt="Samsung Galaxy S25 ultra"
+              class="..."
+            />
+
+            <h3 class="mt-4 text-sm text-gray-300">Samsung Galaxy S25 ultra</h3>
+            <p class="mt-1 text-lg font-medium text-white underline">
+              1TB 1659 $
+            </p>
+          </a>
+
+          <a href="/detail/19" class="group">
+            <img
+              src="/media/products_images/xiaomi_17_pro_max.webp"
+              alt="xiaomi 17 pro max"
+              class="..."
+            />
+
+            <h3 class="mt-4 text-sm text-gray-300">xiaomi 17 pro max</h3>
+            <p class="mt-1 text-lg font-medium text-white underline">900 $</p>
+          </a>
+
+          <a href="/detail/20" class="group">
+            <img
+              src="/media/products_images/google_pixel_9_pro.webp"
+              alt="Google pixel 9 pro"
+              class="..."
+            />
+
+            <h3 class="mt-4 text-sm text-gray-300">Google pixel 9 pro</h3>
+            <p class="mt-1 text-lg font-medium text-white underline">999 $</p>
+          </a>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

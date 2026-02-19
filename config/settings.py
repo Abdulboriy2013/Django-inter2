@@ -35,10 +35,10 @@ INSTALLED_APPS = [
     'compressor',
     'ckeditor',
     'tailwindCss',
-    'templates',
     'users',
     "maqola"
 ]
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -131,3 +131,5 @@ STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
     'compressor.finders.CompressorFinder',
 )
+
+AUTH_USER_MODEL = 'users.Profile'

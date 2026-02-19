@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from maqola.models import Maqola
+from maqola.models import Maqola, Comment
 
 # Create your views here.
 
@@ -9,4 +9,5 @@ def index(request):
 
 def detail(request, id):
     maqola = Maqola.objects.get(id=id)
-    return render(request, 'detail.html', {'maqola': maqola})
+    comment = Comment.objects.filter(maqola=maqola, status=True)
+    return render(request, 'detail.html', {'maqola': maqola, 'comments': comment})

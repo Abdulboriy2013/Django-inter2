@@ -20,7 +20,7 @@ class Comment(models.Model):
     maqola = models.ForeignKey('Maqola', on_delete=models.CASCADE)
     vaqti = models.DateTimeField(default=timezone.now)
     adminReply = models.CharField(max_length=255, null=True, blank=True)
-    status = models.BooleanField(default=False)
+    status = models.BooleanField(default=True)
     comment = models.TextField()
     def __str__(self):
         return str(self.user)

@@ -19,9 +19,8 @@ ALLOWED_HOSTS = [
     '0.0.0.0',
     'localhost',
     '127.0.0.1',
-    '192.168.1.25',
+    '192.168.1.186'
 ]
-
 
 # Application definition
 
@@ -34,7 +33,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'compressor',
     'ckeditor',
-    'tailwindCss',
+    # 'tailwindCss',
     'users',
     "maqola"
 ]

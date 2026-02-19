@@ -2,116 +2,97 @@
 
 <style>
   body {
-    background: linear-gradient(-45deg, #0f2027, #203a43, #2c5364, #000000);
-    background-size: 400% 400%;
-    animation: bgMove 15s ease infinite;
+    background: #0f172a;
   }
 
-  @keyframes bgMove {
-    0% {
-      background-position: 0% 50%;
-    }
-    50% {
-      background-position: 100% 50%;
-    }
-    100% {
-      background-position: 0% 50%;
-    }
-  }
-
-  .glass-card {
+  .card {
     background: rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(25px);
-    border: 1px solid rgba(0, 255, 255, 0.4);
-    border-radius: 30px;
-    box-shadow: 0 0 60px rgba(0, 255, 255, 0.4);
-    transition: 0.5s;
-    transform-style: preserve-3d;
-  }
-
-  .glass-card:hover {
-    transform: rotateX(5deg) rotateY(5deg) scale(1.02);
-    box-shadow: 0 0 100px rgba(0, 255, 255, 0.8);
+    backdrop-filter: blur(10px);
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
   }
 
   .comment-card {
-    background: rgba(255, 255, 255, 0.06);
-    backdrop-filter: blur(20px);
-    border: 1px solid rgba(0, 255, 255, 0.3);
-    border-radius: 20px;
-    transition: 0.4s;
-  }
-
-  .comment-card:hover {
-    transform: translateY(-6px) scale(1.03);
-    box-shadow: 0 0 40px rgba(0, 255, 255, 0.6);
-  }
-
-  .admin-reply {
-    margin-top: 15px;
-    padding: 15px;
-    border-left: 3px solid #00ffff;
-    background: rgba(0, 255, 255, 0.08);
-    border-radius: 15px;
+    background: rgba(255, 255, 255, 0.04);
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.06);
   }
 
   input:focus {
-    border: 1px solid #00ffff;
-    box-shadow: 0 0 15px #00ffff;
+    border-color: #22d3ee;
+    box-shadow: 0 0 8px rgba(34, 211, 238, 0.5);
   }
 </style>
 
-<div class="container mx-auto px-6 py-16 max-w-5xl">
+<div class="container mx-auto px-6 py-16 max-w-4xl text-white">
   <!-- BLOG POST -->
-  <div class="glass-card p-10 text-white mb-16">
-    <h2 class="text-xl mb-4 text-cyan-400">Ko'rishlar: {{ maqola.views }}</h2>
+  <div class="card p-8 mb-12">
+    <h2 class="text-sm text-gray-400 mb-2">Ko'rishlar: {{ maqola.views }}</h2>
 
-    <h1 class="text-3xl font-bold mb-6 text-cyan-300">{{ maqola.title }}</h1>
+    <h1 class="text-3xl font-bold mb-6 text-cyan-400">{{ maqola.title }}</h1>
 
-    <div class="text-gray-200 leading-relaxed text-lg">
-      {{ maqola.content|safe }}
-    </div>
+    <div class="text-gray-300 leading-relaxed">{{ maqola.content|safe }}</div>
   </div>
 
-  <!-- COMMENT SECTION -->
+  <!-- COMMENTS -->
   <div>
-    <h2 class="text-2xl text-cyan-300 mb-8">💬 Comments</h2>
+    <h2 class="text-xl text-cyan-400 mb-6">Comments</h2>
 
     <!-- COMMENT INPUT -->
-    <form method="post" class="mb-10">
-      {% csrf_token %}
-      <div class="flex gap-4">
+    <form action="{% url 'comment' %}" method="post" class="mb-8">
+      <input type="hidden" name="maqolaId" value="{{ maqola.id }}" />
+      {% csrf_token %} {% if request.user.is_authenticated %}
+      <div class="flex gap-3">
         <input
           type="text"
           name="comment"
-          placeholder="Write your comment..."
-          class="flex-1 p-4 rounded-xl bg-gray-900 text-white border border-gray-700 outline-none"
+          placeholder="Write a comment..."
+          class="flex-1 p-3 rounded-lg bg-gray-800 text-white border border-gray-700 outline-none"
           required
+          name='comment'
         />
         <button
           type="submit"
-          class="px-6 py-4 rounded-xl bg-cyan-400 text-black font-semibold hover:scale-110 transition"
+          class="px-5 py-3 rounded-lg bg-cyan-400 text-black font-medium hover:bg-cyan-300 transition"
         >
           Send
         </button>
       </div>
+      {% else %}
+      <div class="flex gap-3">
+        <input
+          type="text"
+          name="comment"
+          placeholder="Write a comment..."
+          disabled
+          class="flex-1 p-3 rounded-lg bg-gray-800 text-white border border-gray-700 outline-none"
+          required
+        />
+        <button
+          type="submit"
+          class="px-5 py-3 rounded-lg bg-cyan-400 text-black font-medium hover:bg-cyan-300 transition"
+        >
+          Send
+        </button>
+      </div>
+      {% endif %}
     </form>
+
     <!-- COMMENTS LOOP -->
     {% for comment in comments %}
-    <div class="comment-card p-6 mb-6 text-white">
-      <div class="flex justify-between items-center mb-3">
-        <h4 class="font-semibold text-cyan-300">{{ comment.user }}</h4>
-        <span class="text-sm text-gray-400"> {{ comment.vaqti }} </span>
+    <div class="comment-card p-5 mb-4">
+      <div class="flex justify-between mb-2 text-sm text-gray-400">
+        <span class="text-cyan-300 font-medium"> {{ comment.user }} </span>
+        <span>{{ comment.vaqti }}</span>
       </div>
 
-      <p class="text-gray-200">{{ comment.comment }}</p>
+      <p class="text-gray-300 mb-3">{{ comment.comment }}</p>
 
-      <!-- ADMIN REPLY -->
       {% if comment.adminReply %}
-        <div class="admin-reply">   
-          <h5 class="text-cyan-300 font-semibold mb-2">Admin javobi:</h5>
-          <p class="text-gray-100">{{ comment.adminReply }}</p>
-        </div>
+      <div class="pl-4 border-l-2 border-cyan-400 text-sm text-gray-300">
+        <span class="text-cyan-300 font-medium">Admin:</span>
+        {{ comment.adminReply }}
+      </div>
       {% endif %}
     </div>
     {% endfor %}

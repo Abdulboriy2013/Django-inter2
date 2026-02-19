@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from maqola.models import Maqola, Comment
 
 # Create your views here.
@@ -11,3 +11,18 @@ def detail(request, id):
     maqola = Maqola.objects.get(id=id)
     comment = Comment.objects.filter(maqola=maqola, status=True)
     return render(request, 'detail.html', {'maqola': maqola, 'comments': comment})
+
+#* Comment
+def comment(request):
+    if request.method == 'POST':
+        user = request.user
+
+        body = request.POST.get('comment')
+
+        maqolaId = request.POST.get('maqolaId')
+
+        maqola = Maqola.objects.get(id=maqolaId)
+
+        new_comment = Comment.objects.create(user=user, comment=body, maqola=maqola)
+
+        return redirect('detail', maqola.id)

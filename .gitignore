@@ -1,6 +1,6 @@
 .venv
 make/
-db.sqlite3
+
 node_modules/
 IP.txt
 requirement.txt
@@ -9,6 +9,6 @@ __pycache__/
 *.pyo
 *.pyd
 *.db
-*.sqlite3
+
 *.log
 *.pot

@@ -29,4 +29,4 @@ def comment(request):
     
 #! About
 def about(request):
-    return redirect(request, 'about.html')
+    return render(request, 'about.html')

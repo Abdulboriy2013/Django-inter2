@@ -1,11 +1,73 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    HI
-</body>
-</html>
+{% extends "_base.html" %} {% block content %}
+
+<style>
+  /* Fade in animation */
+  @keyframes fadeUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .about-card {
+    animation: fadeUp 0.8s ease forwards;
+    backdrop-filter: blur(18px);
+    background: rgba(255, 255, 255, 0.05);
+  }
+
+  /* Animated gradient title */
+  .gradient-text {
+    background: linear-gradient(90deg, #22c55e, #06b6d4, #3b82f6);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: shine 5s linear infinite;
+  }
+
+  @keyframes shine {
+    to {
+      background-position: 200% center;
+    }
+  }
+
+  /* Paragraph hover glow */
+  .about-card p:hover {
+    transform: translateX(5px);
+    transition: 0.3s ease;
+  }
+</style>
+
+<div class="max-w-4xl mx-auto mt-10 px-6">
+  <div
+    class="about-card rounded-2xl border border-white/10 shadow-2xl p-10 text-gray-200"
+  >
+    <h1 class="text-4xl md:text-5xl font-bold mb-8 gradient-text">
+      Biz haqimizda
+    </h1>
+
+    <p class="text-lg leading-relaxed mb-6 transition-all duration-300">
+      Veb-saytimizga xush kelibsiz! Biz bilim ulashishga va o‘quvchilarimizga
+      haqiqatan ham foydali hamda sifatli kontent taqdim etishga ishtiyoq bilan
+      yondashamiz. Bizning maqsadimiz — insonlar o‘rganishi, rivojlanishi va
+      o‘xshash qiziqishlarga ega bo‘lganlar bilan bog‘lana oladigan qulay va
+      ilhomlantiruvchi platforma yaratishdir.
+    </p>
+
+    <p class="text-lg leading-relaxed transition-all duration-300">
+      Jamoamiz o‘z sohasida tajribali va fidoyi mutaxassislardan iborat. Biz
+      keng qamrovli mavzularni o‘z ichiga olgan, yuqori sifatli maqolalar,
+      qo‘llanmalar va foydali resurslarni taqdim etishga intilamiz. Siz yangi
+      bilim olishni istayotgan boshlovchi bo‘lasizmi yoki chuqur tahlil va
+      professional qarashlarni izlayotgan tajribali mutaxassismi — bizda har kim
+      uchun foydali va qiziqarli materiallar mavjud. Platformamiz 2026-yil
+      29-yanvar sanasida tashkil etilgan bo‘lib, shu kundan boshlab bilim
+      ulashish va jamiyatga foyda keltirish yo‘lida faoliyat yuritib kelmoqda.
+    </p>
+  </div>
+</div>
+
+{% endblock %}

@@ -1,5 +1,5 @@
 from django.urls import path, include
-from .views import index, detail, comment
+from .views import index, detail, comment, about
 
 urlpatterns= [
     path('comment', comment, name='comment'),

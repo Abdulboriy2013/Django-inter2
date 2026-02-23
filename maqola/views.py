@@ -26,3 +26,7 @@ def comment(request):
         new_comment = Comment.objects.create(user=user, comment=body, maqola=maqola)
 
         return redirect('detail', maqola.id)
+    
+#! About
+def about(request):
+    return redirect(request, 'about.html')

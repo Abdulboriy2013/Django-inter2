@@ -1,5 +1,5 @@
 from django.shortcuts import redirect, render
-from maqola.models import Maqola, Comment
+from maqola.models import Maqola, Comment, Like
 
 # Create your views here.
 
@@ -9,8 +9,18 @@ def index(request):
 
 def detail(request, id):
     maqola = Maqola.objects.get(id=id)
+
+    maqola.views += 1
+
+    maqola.save()
+
     comment = Comment.objects.filter(maqola=maqola, status=True)
-    return render(request, 'detail.html', {'maqola': maqola, 'comments': comment})
+
+    comments_count = Like.objects.filter(maqola=id).count()
+
+    likes_count = Like.objects.filter(maqola=id).count()
+
+    return render(request, 'detail.html', {'maqola': maqola, 'comments': comment, 'likes_count': likes_count, 'comments_count': comments_count})
 
 #* Comment
 def comment(request):
@@ -30,3 +40,5 @@ def comment(request):
 #! About
 def about(request):
     return render(request, 'about.html')
+
+#* 

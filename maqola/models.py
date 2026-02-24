@@ -30,7 +30,13 @@ class Like(models.Model):
     maqola = models.ForeignKey('Maqola', on_delete=models.PROTECT)
     def __str__(self):
         return f'{self.user} - {self.maqola}'
-    
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(
+                fields=['user', 'maqola'],
+                name='unique_like'
+            )
+        ]
 class Category(models.Model):
     name = models.CharField(max_length=15)
     def __str__(self):

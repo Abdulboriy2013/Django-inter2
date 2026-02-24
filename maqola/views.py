@@ -1,4 +1,5 @@
 from django.shortcuts import redirect, render
+from django.db import IntegrityError
 from maqola.models import Maqola, Comment, Like
 
 # Create your views here.
@@ -41,4 +42,15 @@ def comment(request):
 def about(request):
     return render(request, 'about.html')
 
-#* 
+#* like_post
+def like_post(request, id):
+    maqola = Maqola.objects.get(id=id)
+    user = request.user
+    try:
+        like = Like.ojbects.create(user=user, maqola=maqola)
+        return redirect('detail', id)
+    except IntegrityError:
+        like = Like.objects.filter(maqola = id, user=user)
+        like.delete()
+        return redirect('detail', id)
+        

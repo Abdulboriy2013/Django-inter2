@@ -47,7 +47,7 @@ def like_post(request, id):
     maqola = Maqola.objects.get(id=id)
     user = request.user
     try:
-        like = Like.ojbects.create(user=user, maqola=maqola)
+        like = Like.objects.create(user=user, maqola=maqola)
         return redirect('detail', id)
     except IntegrityError:
         like = Like.objects.filter(maqola = id, user=user)

@@ -23,20 +23,7 @@
     box-shadow: 0 0 8px rgba(34, 211, 238, 0.5);
   }
 </style>
-<a href="{% url 'like_post' maqola.id %}"
-  >{{likes_count}}<svg
-    xmlns="http://www.w3.org/2000/svg"
-    width="24"
-    height="24"
-    viewBox="0 0 24 24"
-  >
-    <path
-      fill="currentColor"
-      d="M23 10a2 2 0 0 0-2-2h-6.32l.96-4.57c.02-.1.03-.21.03-.32c0-.41-.17-.79-.44-1.06L14.17 1L7.59 7.58C7.22 7.95 7 8.45 7 9v10a2 2 0 0 0 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73zM1 21h4V9H1z"
-    /></svg
-></a>
 
-<h3>views: {{maqola.views}}</h3>
 <div class="container mx-auto px-6 py-16 max-w-4xl text-white">
   <!-- BLOG POST -->
   <div class="card p-8 mb-12">
@@ -45,6 +32,18 @@
     <h1 class="text-3xl font-bold mb-6 text-cyan-400">{{ maqola.title }}</h1>
 
     <div class="text-gray-300 leading-relaxed">{{ maqola.content|safe }}</div>
+    <a style="display: flex; justify-content: end;" href="{% url 'like_post' maqola.id %}"
+      >{{likes_count}}<svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+      >
+        <path
+          fill="currentColor"
+          d="M23 10a2 2 0 0 0-2-2h-6.32l.96-4.57c.02-.1.03-.21.03-.32c0-.41-.17-.79-.44-1.06L14.17 1L7.59 7.58C7.22 7.95 7 8.45 7 9v10a2 2 0 0 0 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73zM1 21h4V9H1z"
+        /></svg
+    ></a>
   </div>
 
   <!-- COMMENTS -->
@@ -52,11 +51,13 @@
     <h2 class="text-gray-900 text-3xl font-bolt font-manrope leading-normal">
       {{comments_count}} comments
     </h2>
+
     <h2 class="text-xl text-cyan-400 mb-6">Comments</h2>
 
     <!-- COMMENT INPUT -->
     <form action="{% url 'comment' %}" method="post" class="mb-8">
       <input type="hidden" name="maqolaId" value="{{ maqola.id }}" />
+
       {% csrf_token %} {% if request.user.is_authenticated %}
       <div class="flex gap-3">
         <input
@@ -67,6 +68,7 @@
           required
           name="comment"
         />
+
         <button
           type="submit"
           class="px-5 py-3 rounded-lg bg-cyan-400 text-black font-medium hover:bg-cyan-300 transition"

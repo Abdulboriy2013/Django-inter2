@@ -128,7 +128,6 @@
       <p class="value">{{ user.email }}</p>
     </div>
 
-    {% comment %}
     <div
       style="
         margin-bottom: 25px;
@@ -138,9 +137,8 @@
       "
     >
       <p style="font-size: 14px; color: #9ca3af">Ism:</p>
-      <p style="font-weight: 500; word-break: break-all">{{ user.name }}</p>
+      <p style="font-weight: 500; word-break: break-all">{{ request.user.first_name }}</p>
     </div>
-    {% endcomment %}
     <a href="/" class="btn home-btn">Bosh sahifaga o'tish</a>
 
     <a href="{% url 'logout_profile' %}" class="btn logout-btn">Chiqish</a>

@@ -5,5 +5,6 @@ urlpatterns= [
     path('', index, name='index'),
     path('detail/<int:id>', detail, name='detail'),
     path('comment', comment, name='comment'),
+    # path("services/", services, name="services"),
     path('like_post/<int:id>', like_post, name='like_post'),
 ]

@@ -54,3 +54,6 @@ def like_post(request, id):
         like.delete()
         return redirect('detail', id)
         
+#? Services
+def services(request):
+    return render(request, 'services.html')
